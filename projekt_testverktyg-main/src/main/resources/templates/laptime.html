@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Laptime test</title>
+    <link th:rel="stylesheet" th:href="@{/laptimes.css}" >
+    <script th:src="@{/laptimes.js}"></script>
+</head>
+<body>
+    <div th:class="container">
+        <h1>Dina varvtider</h1>
+        <div th:class="lapTime-list" th:each="lapTime : ${lapTimeList}">
+            <h3 th:text="${'Varvtid: ' + lapTime.getLapTime()}"></h3>
+            <p th:text="${'Id: ' + lapTime.getId()}"></p>
+            <p th:text="${'Date: ' + lapTime.getDate()}"></p>
+            <button
+                th:data-id="${lapTime.getId()}"
+                th:onclick="handleDelete(this.getAttribute('data-id'))"
+            >
+                Delete
+            </button>
+            <hr>
+        </div>
+        <a th:id="addtodo-button" th:href="@{/laptimeform}"><button>Add a new laptime</button></a>
+    </div>
+</body>
+</html>
